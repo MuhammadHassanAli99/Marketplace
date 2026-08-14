@@ -7,12 +7,20 @@ session detail aggressively. The per-spec source of truth lives in
 ## Current Verified State
 
 - **Repository root**: `/Users/macbookpro/marketplace/Marketplace`
-- **Current branch**: `feat/liquid-glass-theme`
+- **Current branch**: `feat/liquid-glass-all-platforms`
 - **Current version**: `2.2.0-rc.1`
 - **Standard startup path**: `bun install && bun run dev`
 - **Standard verification path**: `bun run build`, `bun run lint` (oxlint),
   `bun run test:integration:http -- <pattern>`
 - **Current blocker**: none
+
+## Session — Liquid Glass on by default, branch `feat/liquid-glass-all-platforms`
+
+Liquid Glass overlay is on by default for admin + vendor (light, dark, and
+system). Users can still uncheck it. CSS uses `-webkit-backdrop-filter` +
+`backdrop-filter`, with `@supports` and `forced-colors` fallbacks so the
+material works across Safari/Chrome/Edge/Firefox and Windows contrast mode.
+Verified: 8/8 `apply-document-theme.spec.ts`; rebuilt `@mercurjs/dashboard-shared`.
 
 ## Session — Optional Liquid Glass theme, branch `feat/liquid-glass-theme`
 
