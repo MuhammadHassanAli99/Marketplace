@@ -52,9 +52,9 @@ export function readThemePreference(storage: ThemeStorage): ThemePreference {
   return isThemePreference(persisted) ? persisted : "system"
 }
 
-/** On unless the user stored "false". Keep host index.html FOUC scripts in sync. */
+/** Off unless the user stored "true". Keep host index.html FOUC scripts in sync. */
 export function readLiquidGlassEnabled(storage: ThemeStorage): boolean {
-  return readStorageValue(storage, LIQUID_GLASS_STORAGE_KEY) !== "false"
+  return readStorageValue(storage, LIQUID_GLASS_STORAGE_KEY) === "true"
 }
 
 export function resolveColorScheme(

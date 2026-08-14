@@ -378,7 +378,7 @@ This package is the seam between Mercur's first-party dashboards and any extensi
 
 1. **Stable named imports from the package root.** Anything in `src/index.ts` is part of the public API. Sub-paths are not, except `./styles/liquid-glass.css`.
 2. **No routing or domain logic.** Everything here is presentation + form state + cache plumbing. Block authors are free to compose these primitives without inheriting Mercur's route map or sidebar.
-3. **`@medusajs/ui` as the lowest common denominator.** A block authored against `@mercurjs/dashboard-shared` automatically inherits the same Medusa UI theme as admin and vendor. Hosts apply a Liquid Glass overlay (`html.liquid-glass`) via the dashboard ThemeProvider (on by default; users can turn it off). Blocks do not configure theming.
+3. **`@medusajs/ui` as the lowest common denominator.** A block authored against `@mercurjs/dashboard-shared` automatically inherits the same Medusa UI theme as admin and vendor. Hosts may opt into an optional Liquid Glass overlay (`html.liquid-glass`) via the dashboard ThemeProvider (off by default). Blocks do not configure theming.
 4. **Pair with `@mercurjs/dashboard-sdk`.** The SDK provides file-based routing, the virtual route module, and the `blocks.json` resolver; `dashboard-shared` provides the UI building blocks the resulting pages render.
 
 When in doubt about how to use a primitive, mirror the canonical reference in `@mercurjs/admin` (list → category-list, detail → category-detail, create wizard → product-create, drawer edit → category-edit) — those pages are the source of truth for how everything in this package is meant to be composed.
