@@ -5,7 +5,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "oxlint --quiet",
-    "test:integration:http": "cd integration-tests && bun run test:integration:http"
+    "test:integration:http": "cd integration-tests && bun run test:integration:http",
+    "store:ios": "bun run --filter @acme/admin store:ios",
+    "store:android": "bun run --filter @acme/admin store:android"
   },
   "dependencies": {
     "@mercurjs/core": "workspace:*"

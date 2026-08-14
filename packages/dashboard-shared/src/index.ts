@@ -46,3 +46,11 @@ export {
   shouldRegisterDashboardPwa,
   type DashboardPwaEnvironment,
 } from "./pwa/register-dashboard-pwa"
+export {
+  createDashboardCapacitorConfig,
+  isDashboardNativeBuild,
+  isNativeCapacitorRuntime,
+  withDashboardNativeCors,
+  DASHBOARD_NATIVE_CORS_ORIGINS,
+  type DashboardCapacitorConfig,
+} from "./store/native-runtime"

@@ -35,5 +35,13 @@ describe("shouldRegisterDashboardPwa", () => {
         webdriver: false,
       })
     ).toBe(false)
+    expect(
+      shouldRegisterDashboardPwa({
+        isSecureContext: true,
+        hasServiceWorker: true,
+        webdriver: false,
+        isNative: true,
+      })
+    ).toBe(false)
   })
 })
