@@ -10,7 +10,10 @@
     ],
     "module": "ESNext",
     "types": [
-      "vite/client"
+      "vite"
+    ],
+    "typeRoots": [
+      "./types"
     ],
     "skipLibCheck": true,
     "baseUrl": ".",
