@@ -18,7 +18,8 @@
   },
   "files": [
     "dist",
-    "src/styles"
+    "src/styles",
+    "pwa"
   ],
   "scripts": {
     "dev": "tsup --watch",

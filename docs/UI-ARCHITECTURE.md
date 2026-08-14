@@ -13,8 +13,9 @@ Both dashboards share identical structure, primitives, and visual rules; they di
 ```
 +-----------------------------------------------------------------------+
 | Hosts                                                                 |
-|   apps/admin-test  (Vite, port 7000)  -> mounts @mercurjs/admin       |
-|   apps/vendor      (Vite, port 7001)  -> mounts @mercurjs/vendor      |
+|   apps/admin-test  (Vite PWA, port 7000) -> mounts @mercurjs/admin    |
+|   apps/vendor      (Vite PWA, port 7001) -> mounts @mercurjs/vendor   |
+|   Installable on iOS, Android, Windows, macOS, Linux (HTTPS/localhost)|
 +-----------------------------------------------------------------------+
 |  App root (packages/{admin,vendor}/src/app.tsx)                       |
 |   TooltipProvider                                                     |

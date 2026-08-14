@@ -27,12 +27,22 @@ export * from "./extensions"
 export * from "./price-lists"
 export {
   applyDocumentTheme,
+  applyThemeColorMeta,
+  getThemeStorage,
   isThemePreference,
   readLiquidGlassEnabled,
   readThemePreference,
   resolveColorScheme,
+  subscribePrefersColorScheme,
+  themeColorFor,
+  writeStorageValue,
   LIQUID_GLASS_STORAGE_KEY,
   THEME_STORAGE_KEY,
   type ColorScheme,
   type ThemePreference,
 } from "./theme"
+export {
+  registerDashboardPwa,
+  shouldRegisterDashboardPwa,
+  type DashboardPwaEnvironment,
+} from "./pwa/register-dashboard-pwa"

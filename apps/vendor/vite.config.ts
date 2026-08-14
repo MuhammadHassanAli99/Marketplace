@@ -34,5 +34,11 @@ export default defineConfig(({ mode }) => {
         ...(backendUrl ? { backendUrl } : {}),
       }),
     ],
+    server: {
+      host: true,
+    },
+    preview: {
+      host: true,
+    },
   }
 })

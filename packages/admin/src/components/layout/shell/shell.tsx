@@ -26,13 +26,13 @@ export const Shell = ({ children }: PropsWithChildren) => {
 
   return (
     <KeybindProvider shortcuts={globalShortcuts}>
-      <div className="relative flex h-screen flex-col items-start overflow-hidden lg:flex-row">
+      <div className="relative flex h-dvh flex-col items-start overflow-hidden lg:flex-row">
         <NavigationBar loading={loading} />
         <div>
           <MobileSidebarContainer>{children}</MobileSidebarContainer>
           <DesktopSidebarContainer>{children}</DesktopSidebarContainer>
         </div>
-        <div className="flex h-screen w-full flex-col overflow-auto">
+        <div className="flex h-dvh w-full flex-col overflow-auto">
           <Topbar />
           <main
             className={clx(
@@ -210,7 +210,7 @@ const DesktopSidebarContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <div
-      className={clx("liquid-glass-pane bg-ui-bg-subtle hidden h-screen w-[220px] border-e", {
+      className={clx("liquid-glass-pane bg-ui-bg-subtle hidden h-dvh w-[220px] border-e", {
         "lg:flex": desktop,
       })}
     >

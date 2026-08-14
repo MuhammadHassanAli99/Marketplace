@@ -12,6 +12,8 @@
 html.liquid-glass {
   --lg-blur: 28px;
   --lg-saturate: 1.55;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html.liquid-glass:not(.dark) {
@@ -113,6 +115,14 @@ html.liquid-glass.dark {
 html.liquid-glass,
 html.liquid-glass body {
   background-color: transparent;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+html.liquid-glass body {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior-y: none;
 }
 
 html.liquid-glass body::before {
@@ -121,6 +131,8 @@ html.liquid-glass body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   background:
     radial-gradient(ellipse 80% 55% at 12% -8%, var(--lg-blob-1), transparent 58%),
     radial-gradient(ellipse 70% 50% at 92% 4%, var(--lg-blob-2), transparent 52%),
