@@ -1,13 +1,21 @@
+import { isNativeCapacitorRuntime } from "../store/native-runtime"
+
 export type DashboardPwaEnvironment = {
   isSecureContext: boolean
   hasServiceWorker: boolean
   webdriver: boolean
+  isNative?: boolean
 }
 
 export function shouldRegisterDashboardPwa(
   env: DashboardPwaEnvironment
 ): boolean {
-  return env.isSecureContext && env.hasServiceWorker && !env.webdriver
+  return (
+    env.isSecureContext &&
+    env.hasServiceWorker &&
+    !env.webdriver &&
+    !env.isNative
+  )
 }
 
 /**
@@ -24,6 +32,7 @@ export function registerDashboardPwa(): void {
     isSecureContext: window.isSecureContext,
     hasServiceWorker: "serviceWorker" in navigator,
     webdriver: Boolean(navigator.webdriver),
+    isNative: isNativeCapacitorRuntime(),
   }
 
   if (!shouldRegisterDashboardPwa(env)) {

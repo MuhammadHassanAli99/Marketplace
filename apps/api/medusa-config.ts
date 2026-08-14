@@ -4,6 +4,23 @@ import { withMercur } from '@mercurjs/core'
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379'
+const NATIVE_DASHBOARD_ORIGINS =
+  'https://localhost,capacitor://localhost,ionic://localhost'
+
+function withNativeDashboardOrigins(value: string | undefined): string {
+  const origins = new Set(
+    (value ?? '')
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean)
+  )
+
+  for (const origin of NATIVE_DASHBOARD_ORIGINS.split(',')) {
+    origins.add(origin)
+  }
+
+  return [...origins].join(',')
+}
 
 module.exports = withMercur({
   projectConfig: {
@@ -11,9 +28,9 @@ module.exports = withMercur({
     redisUrl: REDIS_URL,
     http: {
       storeCors: process.env.STORE_CORS!,
-      adminCors: process.env.ADMIN_CORS!,
-      vendorCors: process.env.VENDOR_CORS!,
-      authCors: process.env.AUTH_CORS!,
+      adminCors: withNativeDashboardOrigins(process.env.ADMIN_CORS),
+      vendorCors: withNativeDashboardOrigins(process.env.VENDOR_CORS),
+      authCors: withNativeDashboardOrigins(process.env.AUTH_CORS),
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }

@@ -43,3 +43,21 @@ packages/modules/*
 
 # Local spec tracker (not versioned)
 docs/specs/
+
+# Capacitor / store packaging
+**/ios/App/Pods
+**/ios/App/build
+**/ios/DerivedData
+**/android/.gradle
+**/android/app/build
+**/android/build
+**/android/local.properties
+**/android/captures
+**/android/app/src/main/assets/public
+**/ios/App/App/public
+*.ipa
+*.aab
+*.apk
+*.msix
+*.appx
+*.appxbundle

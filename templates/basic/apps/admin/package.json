@@ -6,13 +6,25 @@
   "scripts": {
     "dev": "vite --port 7000",
     "build": "tsc -b && vite build",
+    "build:native": "CAPACITOR=1 vite build && cap sync",
+    "store:ios": "CAPACITOR=1 vite build && cap sync ios && cap open ios",
+    "store:android": "CAPACITOR=1 vite build && cap sync android && cap open android",
     "lint": "eslint .",
     "preview": "vite preview --port 7000"
   },
   "dependencies": {
-    "@mercurjs/admin": "2.3.1"
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/core": "^8.5.0",
+    "@capacitor/ios": "^8.5.0",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.3",
+    "@mercurjs/admin": "2.3.1",
+    "@mercurjs/dashboard-shared": "2.3.1"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.0",
     "@types/node": "^24.10.1"
   }
 }

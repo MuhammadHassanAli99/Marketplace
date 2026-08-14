@@ -14,6 +14,13 @@ session detail aggressively. The per-spec source of truth lives in
   `bun run test:integration:http -- <pattern>`
 - **Current blocker**: none
 
+## Session — Store packages (App Store / Play / Microsoft), branch `feat/liquid-glass-all-platforms`
+
+Capacitor 8 iOS+Android projects for admin (`com.mercurjs.admin`) and vendor
+(`com.mercurjs.vendor`); PWABuilder MSIX identity under `store/microsoft/`.
+Native CORS origins on the API; SW skipped inside Capacitor. Tests: 18/18
+theme+PWA+native-runtime. `bunx cap add ios|android` generated both hosts.
+
 ## Session — Liquid Glass on by default, branch `feat/liquid-glass-all-platforms`
 
 Liquid Glass overlay is on by default for admin + vendor (light, dark, and

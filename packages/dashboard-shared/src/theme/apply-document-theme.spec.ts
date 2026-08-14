@@ -71,7 +71,7 @@ describe("theme persistence", () => {
     }
 
     expect(readThemePreference(exploding)).toBe("system")
-    expect(readLiquidGlassEnabled(exploding)).toBe(false)
+    expect(readLiquidGlassEnabled(exploding)).toBe(true)
     expect(() => writeStorageValue(exploding, THEME_STORAGE_KEY, "dark")).not.toThrow()
   })
 })

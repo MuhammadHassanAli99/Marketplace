@@ -1,0 +1,15 @@
+{
+  "name": "Mercur Vendor Hub",
+  "packageId": "MercurJS.Vendor",
+  "version": "1.0.0.0",
+  "url": "https://REPLACE_WITH_DEPLOYED_VENDOR_ORIGIN/",
+  "publisher": {
+    "displayName": "REPLACE_WITH_PARTNER_CENTER_PUBLISHER_NAME",
+    "commonName": "CN=REPLACE_WITH_PARTNER_CENTER_PUBLISHER_ID"
+  },
+  "classicPackage": {
+    "generate": true
+  },
+  "edgeChannel": "stable",
+  "generateModernPackage": true
+}

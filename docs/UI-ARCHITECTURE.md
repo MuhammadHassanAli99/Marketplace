@@ -15,7 +15,7 @@ Both dashboards share identical structure, primitives, and visual rules; they di
 | Hosts                                                                 |
 |   apps/admin-test  (Vite PWA, port 7000) -> mounts @mercurjs/admin    |
 |   apps/vendor      (Vite PWA, port 7001) -> mounts @mercurjs/vendor   |
-|   Installable on iOS, Android, Windows, macOS, Linux (HTTPS/localhost)|
+|   Installable PWA + App Store / Play Store / Microsoft Store packages |
 +-----------------------------------------------------------------------+
 |  App root (packages/{admin,vendor}/src/app.tsx)                       |
 |   TooltipProvider                                                     |
@@ -530,6 +530,14 @@ Use only the [Medusa UI color tokens](https://docs.medusajs.com/ui/colors/overvi
 Apply tokens via Tailwind utilities; `clx` (re-exported from `@medusajs/ui`) is the canonical helper for conditional class merging.
 
 Light, dark, and system color schemes are selected from the user menu. **Liquid Glass** is an overlay on top of that choice (on by default on admin and vendor). It is not a fourth color scheme: it adds a `liquid-glass` class on `<html>`, revalues the existing `--bg-*` / `--elevation-*` tokens toward translucent surfaces, and blurs chrome (`liquid-glass-pane`, cards, flyouts, modals). Users can turn it off from Theme. Page code should keep using Medusa UI tokens; do not special-case Liquid Glass in components. The overlay uses `-webkit-backdrop-filter` plus `backdrop-filter` so it paints on Safari, Chrome, Edge, Firefox, and Chromium Android; browsers without blur, `prefers-reduced-transparency`, and `forced-colors` fall back to opaque surfaces.
+
+Admin and vendor ship as store-ready apps as well as PWAs:
+
+- **Apple App Store** — Capacitor iOS projects in `apps/admin-test/ios` and `apps/vendor/ios` (`com.mercurjs.admin` / `com.mercurjs.vendor`). From the host: `VITE_MERCUR_BACKEND_URL=https://your-api.example bun run store:ios`, then Archive in Xcode and upload to App Store Connect.
+- **Google Play** — Capacitor Android projects in `apps/admin-test/android` and `apps/vendor/android`. `bun run store:android`, then Android Studio → Generate Signed Bundle (AAB).
+- **Microsoft Store** — the hosted HTTPS PWA (manifest + service worker + screenshots). Fill in `packages/dashboard-shared/store/microsoft/*.package.json` publisher IDs, then package at [PWABuilder](https://www.pwabuilder.com) and submit the MSIX in Partner Center.
+
+Set `VITE_MERCUR_BACKEND_URL` to the production API before `build:native`. The API already allows Capacitor WebView origins (`https://localhost`, `capacitor://localhost`, `ionic://localhost`) on admin, vendor, and auth CORS. Change the bundle IDs before submitting under your own developer accounts.
 
 ### Typography
 

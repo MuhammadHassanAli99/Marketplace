@@ -65,6 +65,8 @@ src/
   module.d.ts                    Ambient types for virtual modules consumed by Vite
   theme/                         Document theme helpers (color scheme + Liquid Glass overlay)
   styles/liquid-glass.css        Liquid Glass token overlay consumed by admin/vendor `index.css`
+  pwa/                           Service worker, manifests, and icons copied into dashboard hosts
+  store/                         Capacitor helpers + Microsoft Store (PWABuilder) package identity
 
   components/
     index.ts                     Re-exports all component subtrees

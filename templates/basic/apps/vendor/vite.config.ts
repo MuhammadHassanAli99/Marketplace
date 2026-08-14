@@ -14,8 +14,10 @@ export default defineConfig(({ mode }) => {
   // (e.g. Medusa Cloud) set it to the deployed backend origin so API calls are
   // same-origin; it defaults to http://localhost:9000 for development.
   const backendUrl = env.VITE_MERCUR_BACKEND_URL || env.MERCUR_BACKEND_URL
+  const native = process.env.CAPACITOR === '1' || env.VITE_NATIVE === '1'
 
   return {
+    base: native ? './' : '/',
     server: {
       host: true,
     },

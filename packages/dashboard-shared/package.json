@@ -19,7 +19,8 @@
   "files": [
     "dist",
     "src/styles",
-    "pwa"
+    "pwa",
+    "store"
   ],
   "scripts": {
     "dev": "tsup --watch",
