@@ -22,7 +22,7 @@
     "@capacitor/status-bar": "^8.0.3",
     "@hookform/resolvers": "5.4.0",
     "@medusajs/icons": "2.18.0",
-    "@medusajs/ui": "4.1.19",
+    "@medusajs/ui": "4.2.0",
     "@mercurjs/admin": "*",
     "@mercurjs/client": "*",
     "@mercurjs/dashboard-sdk": "*",
