@@ -3,12 +3,11 @@ name: Deploy Pages
 on:
   push:
     branches: [main]
-    # registry.mercurjs.com only serves the two JSON Schema files below, so a
-    # deploy is only needed when they (or the CNAME) change.
+    # This repo's Pages site only hosts the two JSON Schema files. A deploy is
+    # only needed when they (or this workflow) change.
     paths:
       - registry.json
       - registry-item.json
-      - CNAME
       - .github/workflows/pages.yml
   workflow_dispatch:
 
@@ -37,15 +36,17 @@ jobs:
         with:
           fetch-depth: 1
 
-      # registry.mercurjs.com is only used as the $schema host for the registry
-      # (see packages/cli/src/registry/constants.ts). Publishing just these
-      # files keeps the Pages artifact tiny and symlink-free — the legacy build
-      # published the whole monorepo (node_modules and all), which is what made
-      # the "syncing_files" step fail intermittently.
+      # Ensures Pages is using the GitHub Actions source before deploy-pages
+      # talks to the Pages API (a missing/disabled site returns 404).
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # Publish only the schema files. Do not ship a CNAME — this copy of the
+      # repo is served at username.github.io/Marketplace, not registry.mercurjs.com.
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp registry.json registry-item.json CNAME _site/
+          cp registry.json registry-item.json _site/
           touch _site/.nojekyll
 
       - name: Upload artifact
