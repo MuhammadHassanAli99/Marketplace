@@ -259,7 +259,8 @@
           "label": "Motyw",
           "dark": "Ciemny",
           "light": "Jasny",
-          "system": "Systemowy"
+          "system": "Systemowy",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

@@ -262,7 +262,8 @@
           "label": "Téma",
           "dark": "Tmavé",
           "light": "Světlé",
-          "system": "Systémové"
+          "system": "Systémové",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

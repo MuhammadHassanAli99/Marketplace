@@ -148,7 +148,7 @@ const UserBadge = () => {
 
 const ThemeToggle = () => {
   const { t } = useTranslation()
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, liquidGlass, setLiquidGlass } = useTheme()
 
   return (
     <DropdownMenu.SubMenu data-testid="sidebar-user-menu-theme-toggle">
@@ -189,6 +189,15 @@ const ThemeToggle = () => {
             {t("app.menus.user.theme.dark")}
           </DropdownMenu.RadioItem>
         </DropdownMenu.RadioGroup>
+        <DropdownMenu.Separator data-testid="sidebar-user-menu-theme-separator" />
+        <DropdownMenu.CheckboxItem
+          checked={liquidGlass}
+          onCheckedChange={(checked) => setLiquidGlass(checked === true)}
+          onSelect={(e) => e.preventDefault()}
+          data-testid="sidebar-user-menu-theme-liquid-glass"
+        >
+          {t("app.menus.user.theme.liquidGlass")}
+        </DropdownMenu.CheckboxItem>
       </DropdownMenu.SubMenuContent>
     </DropdownMenu.SubMenu>
   )

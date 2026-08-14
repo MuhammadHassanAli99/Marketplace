@@ -266,7 +266,8 @@
           "label": "主題",
           "dark": "深色",
           "light": "淺色",
-          "system": "系統"
+          "system": "系統",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

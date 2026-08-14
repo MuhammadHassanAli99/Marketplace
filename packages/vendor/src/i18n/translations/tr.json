@@ -266,7 +266,8 @@
           "label": "Tema",
           "dark": "Karanlık",
           "light": "Aydınlık",
-          "system": "Sistem"
+          "system": "Sistem",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

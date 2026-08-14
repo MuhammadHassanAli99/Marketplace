@@ -1,0 +1,173 @@
+/*
+ * Optional Liquid Glass material. Hosts opt in by adding `liquid-glass` to <html>
+ * alongside `light` or `dark`. Surfaces stay on Medusa UI tokens; only the
+ * token values and chrome blur change.
+ */
+
+html.liquid-glass {
+  --lg-blur: 28px;
+  --lg-saturate: 1.55;
+}
+
+html.liquid-glass:not(.dark) {
+  --lg-canvas: #dce6f4;
+  --lg-blob-1: rgb(120 168 255 / 0.42);
+  --lg-blob-2: rgb(196 158 255 / 0.32);
+  --lg-blob-3: rgb(110 214 196 / 0.26);
+  --bg-base: rgb(255 255 255 / 0.58);
+  --bg-base-hover: rgb(255 255 255 / 0.74);
+  --bg-base-pressed: rgb(255 255 255 / 0.82);
+  --bg-subtle: rgb(255 255 255 / 0.4);
+  --bg-subtle-hover: rgb(255 255 255 / 0.56);
+  --bg-subtle-pressed: rgb(255 255 255 / 0.68);
+  --bg-component: rgb(255 255 255 / 0.52);
+  --bg-component-hover: rgb(255 255 255 / 0.68);
+  --bg-component-pressed: rgb(255 255 255 / 0.78);
+  --bg-field: rgb(255 255 255 / 0.5);
+  --bg-field-hover: rgb(255 255 255 / 0.66);
+  --bg-field-component: rgb(255 255 255 / 0.62);
+  --bg-field-component-hover: rgb(255 255 255 / 0.76);
+  --bg-disabled: rgb(255 255 255 / 0.32);
+  --bg-overlay: rgb(236 242 250 / 0.42);
+  --bg-highlight: rgb(239 246 255 / 0.62);
+  --bg-highlight-hover: rgb(219 234 254 / 0.72);
+  --button-neutral: rgb(255 255 255 / 0.48);
+  --button-neutral-hover: rgb(255 255 255 / 0.64);
+  --button-neutral-pressed: rgb(255 255 255 / 0.76);
+  --button-transparent-hover: rgb(255 255 255 / 0.36);
+  --border-base: rgb(255 255 255 / 0.48);
+  --border-strong: rgb(255 255 255 / 0.62);
+  --elevation-card-rest:
+    inset 0 1px 0 rgb(255 255 255 / 0.72), 0 0 0 1px rgb(255 255 255 / 0.4),
+    0 8px 24px rgb(15 23 42 / 0.08);
+  --elevation-card-hover:
+    inset 0 1px 0 rgb(255 255 255 / 0.8), 0 0 0 1px rgb(255 255 255 / 0.5),
+    0 12px 32px rgb(15 23 42 / 0.12);
+  --elevation-flyout:
+    inset 0 1px 0 rgb(255 255 255 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.42),
+    0 16px 40px rgb(15 23 42 / 0.14);
+  --elevation-modal:
+    inset 0 1px 0 rgb(255 255 255 / 0.75), 0 0 0 1px rgb(255 255 255 / 0.45),
+    0 24px 64px rgb(15 23 42 / 0.18);
+  --elevation-tooltip:
+    inset 0 1px 0 rgb(255 255 255 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.4),
+    0 8px 24px rgb(15 23 42 / 0.12);
+  --elevation-commandbar:
+    inset 0 1px 0 rgb(255 255 255 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.42),
+    0 16px 40px rgb(15 23 42 / 0.14);
+}
+
+html.liquid-glass.dark {
+  --lg-canvas: #0e1118;
+  --lg-blob-1: rgb(70 110 220 / 0.38);
+  --lg-blob-2: rgb(150 90 220 / 0.26);
+  --lg-blob-3: rgb(40 170 160 / 0.2);
+  --bg-base: rgb(33 33 36 / 0.52);
+  --bg-base-hover: rgb(39 39 42 / 0.68);
+  --bg-base-pressed: rgb(63 63 70 / 0.72);
+  --bg-subtle: rgb(24 24 27 / 0.42);
+  --bg-subtle-hover: rgb(33 33 36 / 0.58);
+  --bg-subtle-pressed: rgb(39 39 42 / 0.68);
+  --bg-component: rgb(39 39 42 / 0.48);
+  --bg-component-hover: rgb(255 255 255 / 0.12);
+  --bg-component-pressed: rgb(255 255 255 / 0.16);
+  --bg-field: rgb(255 255 255 / 0.08);
+  --bg-field-hover: rgb(255 255 255 / 0.12);
+  --bg-field-component: rgb(33 33 36 / 0.55);
+  --bg-field-component-hover: rgb(39 39 42 / 0.7);
+  --bg-disabled: rgb(39 39 42 / 0.4);
+  --bg-overlay: rgb(14 17 24 / 0.55);
+  --bg-highlight: rgb(23 37 84 / 0.55);
+  --bg-highlight-hover: rgb(30 58 138 / 0.62);
+  --button-neutral: rgb(255 255 255 / 0.08);
+  --button-neutral-hover: rgb(255 255 255 / 0.12);
+  --button-neutral-pressed: rgb(255 255 255 / 0.16);
+  --button-transparent-hover: rgb(255 255 255 / 0.1);
+  --border-base: rgb(255 255 255 / 0.14);
+  --border-strong: rgb(255 255 255 / 0.22);
+  --elevation-card-rest:
+    inset 0 1px 0 rgb(255 255 255 / 0.16), 0 0 0 1px rgb(255 255 255 / 0.1),
+    0 8px 24px rgb(0 0 0 / 0.36);
+  --elevation-card-hover:
+    inset 0 1px 0 rgb(255 255 255 / 0.2), 0 0 0 1px rgb(255 255 255 / 0.14),
+    0 12px 32px rgb(0 0 0 / 0.44);
+  --elevation-flyout:
+    inset 0 1px 0 rgb(255 255 255 / 0.16), 0 0 0 1px rgb(255 255 255 / 0.12),
+    0 16px 40px rgb(0 0 0 / 0.48);
+  --elevation-modal:
+    inset 0 1px 0 rgb(255 255 255 / 0.18), 0 0 0 1px rgb(255 255 255 / 0.12),
+    0 24px 64px rgb(0 0 0 / 0.52);
+  --elevation-tooltip:
+    inset 0 1px 0 rgb(255 255 255 / 0.14), 0 0 0 1px rgb(255 255 255 / 0.1),
+    0 8px 24px rgb(0 0 0 / 0.4);
+  --elevation-commandbar:
+    inset 0 1px 0 rgb(255 255 255 / 0.16), 0 0 0 1px rgb(255 255 255 / 0.12),
+    0 16px 40px rgb(0 0 0 / 0.48);
+}
+
+html.liquid-glass,
+html.liquid-glass body {
+  background-color: transparent;
+}
+
+html.liquid-glass body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 55% at 12% -8%, var(--lg-blob-1), transparent 58%),
+    radial-gradient(ellipse 70% 50% at 92% 4%, var(--lg-blob-2), transparent 52%),
+    radial-gradient(ellipse 65% 45% at 48% 108%, var(--lg-blob-3), transparent 56%),
+    var(--lg-canvas);
+}
+
+html.liquid-glass #root {
+  position: relative;
+  z-index: 1;
+}
+
+html.liquid-glass .liquid-glass-pane,
+html.liquid-glass .shadow-elevation-card-rest,
+html.liquid-glass .shadow-elevation-card-hover,
+html.liquid-glass .shadow-elevation-flyout,
+html.liquid-glass .shadow-elevation-modal,
+html.liquid-glass .shadow-elevation-commandbar,
+html.liquid-glass .shadow-elevation-tooltip {
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+}
+
+html.liquid-glass aside .sticky {
+  background-color: transparent;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  html.liquid-glass:not(.dark) {
+    --bg-base: rgb(255 255 255 / 0.92);
+    --bg-subtle: rgb(250 250 250 / 0.92);
+    --bg-component: rgb(250 250 250 / 0.92);
+    --bg-field: rgb(250 250 250 / 0.94);
+    --bg-overlay: rgb(24 24 27 / 0.4);
+  }
+
+  html.liquid-glass.dark {
+    --bg-base: rgb(33 33 36 / 0.92);
+    --bg-subtle: rgb(24 24 27 / 0.92);
+    --bg-component: rgb(39 39 42 / 0.92);
+    --bg-field: rgb(255 255 255 / 0.08);
+    --bg-overlay: rgb(24 24 27 / 0.72);
+  }
+
+  html.liquid-glass .liquid-glass-pane,
+  html.liquid-glass .shadow-elevation-card-rest,
+  html.liquid-glass .shadow-elevation-card-hover,
+  html.liquid-glass .shadow-elevation-flyout,
+  html.liquid-glass .shadow-elevation-modal,
+  html.liquid-glass .shadow-elevation-commandbar,
+  html.liquid-glass .shadow-elevation-tooltip {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

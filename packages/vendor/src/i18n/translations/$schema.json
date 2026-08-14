@@ -1055,13 +1055,17 @@
                     },
                     "system": {
                       "type": "string"
+                    },
+                    "liquidGlass": {
+                      "type": "string"
                     }
                   },
                   "required": [
                     "label",
                     "dark",
                     "light",
-                    "system"
+                    "system",
+                    "liquidGlass"
                   ],
                   "additionalProperties": false
                 }

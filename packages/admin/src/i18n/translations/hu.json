@@ -262,7 +262,8 @@
           "label": "Téma",
           "dark": "Sötét",
           "light": "Világos",
-          "system": "Rendszer"
+          "system": "Rendszer",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

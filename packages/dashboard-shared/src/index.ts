@@ -25,3 +25,14 @@ export * from "./components"
 export * from "./hooks"
 export * from "./extensions"
 export * from "./price-lists"
+export {
+  applyDocumentTheme,
+  isThemePreference,
+  readLiquidGlassEnabled,
+  readThemePreference,
+  resolveColorScheme,
+  LIQUID_GLASS_STORAGE_KEY,
+  THEME_STORAGE_KEY,
+  type ColorScheme,
+  type ThemePreference,
+} from "./theme"

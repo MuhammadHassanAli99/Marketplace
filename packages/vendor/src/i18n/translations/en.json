@@ -266,7 +266,8 @@
           "label": "Theme",
           "dark": "Dark",
           "light": "Light",
-          "system": "System"
+          "system": "System",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

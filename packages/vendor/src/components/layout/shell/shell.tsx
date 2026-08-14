@@ -196,7 +196,7 @@ const ToggleSidebar = () => {
 
 const Topbar = () => {
   return (
-    <div className="grid w-full grid-cols-2 border-b p-3">
+    <div className="liquid-glass-pane bg-ui-bg-subtle grid w-full grid-cols-2 border-b p-3">
       <div className="flex items-center gap-x-1.5">
         <ToggleSidebar />
         <Breadcrumbs />
@@ -211,7 +211,7 @@ const DesktopSidebarContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <div
-      className={clx("hidden h-screen w-[220px] border-e", {
+      className={clx("liquid-glass-pane bg-ui-bg-subtle hidden h-screen w-[220px] border-e", {
         "lg:flex": desktop,
       })}
     >

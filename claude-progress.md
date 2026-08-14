@@ -6,13 +6,20 @@ session detail aggressively. The per-spec source of truth lives in
 
 ## Current Verified State
 
-- **Repository root**: `/Users/viktorholik/Desktop/mercur`
-- **Current branch**: `main`
+- **Repository root**: `/Users/macbookpro/marketplace/Marketplace`
+- **Current branch**: `feat/liquid-glass-theme`
 - **Current version**: `2.2.0-rc.1`
 - **Standard startup path**: `bun install && bun run dev`
 - **Standard verification path**: `bun run build`, `bun run lint` (oxlint),
   `bun run test:integration:http -- <pattern>`
 - **Current blocker**: none
+
+## Session — Optional Liquid Glass theme, branch `feat/liquid-glass-theme`
+
+Opt-in overlay (off by default) on admin + vendor. User menu Theme → checkbox
+"Liquid Glass" alongside System/Light/Dark. Shared CSS + `applyDocumentTheme`
+helpers in `@mercurjs/dashboard-shared`. Tests: 8/8
+`apply-document-theme.spec.ts`. Built `@mercurjs/dashboard-shared|admin|vendor`.
 
 ## Session — Admin Inventory (MER-139), branch `feat/admin-inventory`
 

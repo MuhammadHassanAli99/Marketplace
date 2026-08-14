@@ -63,6 +63,8 @@ Reusable React UI primitives, hooks, and helpers shared by the two Mercur dashbo
 src/
   index.ts                       Public surface (see "Public surface" below)
   module.d.ts                    Ambient types for virtual modules consumed by Vite
+  theme/                         Document theme helpers (color scheme + optional Liquid Glass overlay)
+  styles/liquid-glass.css        Optional Liquid Glass token overlay consumed by admin/vendor `index.css`
 
   components/
     index.ts                     Re-exports all component subtrees
@@ -232,7 +234,7 @@ import {
 } from "@mercurjs/dashboard-shared"
 ```
 
-Reaching into `@mercurjs/dashboard-shared/dist/...` is not supported; only the package root is published.
+Reaching into `@mercurjs/dashboard-shared/dist/...` is not supported. The published surface is the package root plus `./styles/liquid-glass.css`.
 
 ## How the dashboards consume it
 
@@ -372,9 +374,9 @@ Inherited verbatim from `packages/admin/ARCHITECTURE.md` (since the admin and ve
 
 This package is the seam between Mercur's first-party dashboards and any extension a user writes. The contract is:
 
-1. **Stable named imports from the package root.** Anything in `src/index.ts` is part of the public API. Sub-paths are not.
+1. **Stable named imports from the package root.** Anything in `src/index.ts` is part of the public API. Sub-paths are not, except `./styles/liquid-glass.css`.
 2. **No routing or domain logic.** Everything here is presentation + form state + cache plumbing. Block authors are free to compose these primitives without inheriting Mercur's route map or sidebar.
-3. **`@medusajs/ui` as the lowest common denominator.** A block authored against `@mercurjs/dashboard-shared` automatically inherits the same Medusa UI theme as admin and vendor — there is no theming surface to configure.
+3. **`@medusajs/ui` as the lowest common denominator.** A block authored against `@mercurjs/dashboard-shared` automatically inherits the same Medusa UI theme as admin and vendor. Hosts may opt into an optional Liquid Glass overlay (`html.liquid-glass`) via the dashboard ThemeProvider; blocks do not configure theming.
 4. **Pair with `@mercurjs/dashboard-sdk`.** The SDK provides file-based routing, the virtual route module, and the `blocks.json` resolver; `dashboard-shared` provides the UI building blocks the resulting pages render.
 
 When in doubt about how to use a primitive, mirror the canonical reference in `@mercurjs/admin` (list → category-list, detail → category-detail, create wizard → product-create, drawer edit → category-edit) — those pages are the source of truth for how everything in this package is meant to be composed.

@@ -266,7 +266,8 @@
           "label": "Сэдэв",
           "dark": "Харанхуй",
           "light": "Гэрэлтэй",
-          "system": "Системийн"
+          "system": "Системийн",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

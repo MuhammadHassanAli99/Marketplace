@@ -13,10 +13,12 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./styles/liquid-glass.css": "./src/styles/liquid-glass.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/styles"
   ],
   "scripts": {
     "dev": "tsup --watch",

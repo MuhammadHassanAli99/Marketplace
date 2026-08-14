@@ -266,7 +266,8 @@
           "label": "Θέμα",
           "dark": "Σκούρο",
           "light": "Ανοιχτόχρωμο",
-          "system": "Σύστημα"
+          "system": "Σύστημα",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

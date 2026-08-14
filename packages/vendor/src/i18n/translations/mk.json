@@ -266,7 +266,8 @@
           "label": "Тема",
           "dark": "Темно",
           "light": "Светлина",
-          "system": "Систем"
+          "system": "Систем",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

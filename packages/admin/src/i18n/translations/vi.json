@@ -262,7 +262,8 @@
           "label": "Chủ đề",
           "dark": "Tối",
           "light": "Sáng",
-          "system": "Hệ thống"
+          "system": "Hệ thống",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

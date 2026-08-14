@@ -5,6 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mercur Vendor Hub</title>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("medusa_admin_theme") || "system";
+          var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var scheme =
+            theme === "dark" || (theme !== "light" && dark) ? "dark" : "light";
+          var html = document.documentElement;
+          html.classList.add(scheme);
+          html.style.colorScheme = scheme;
+          if (localStorage.getItem("medusa_admin_liquid_glass") === "true") {
+            html.classList.add("liquid-glass");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -262,7 +262,8 @@
           "label": "ธีม",
           "dark": "มืด",
           "light": "สว่าง",
-          "system": "ระบบ"
+          "system": "ระบบ",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {
