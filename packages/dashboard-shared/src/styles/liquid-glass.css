@@ -1,11 +1,12 @@
 /*
- * Optional Liquid Glass material. Hosts opt in by adding `liquid-glass` to <html>
- * alongside `light` or `dark`. Surfaces stay on Medusa UI tokens; only the
- * token values and chrome blur change.
+ * Liquid Glass material. Enabled by default on dashboard hosts (admin + vendor)
+ * by adding `liquid-glass` to <html> alongside `light` or `dark`. Surfaces stay
+ * on Medusa UI tokens; only the token values and chrome blur change.
  *
- * Blur uses -webkit-backdrop-filter (Safari iOS/macOS) plus backdrop-filter
- * (Chrome/Edge/Firefox on Android, Windows, Linux). Touch, dvh, safe-area, and
- * forced-colors keep the overlay usable as a PWA on every platform.
+ * Blur uses -webkit-backdrop-filter + backdrop-filter so Safari, Chrome, Edge,
+ * Firefox, and Chromium Android all paint the same material. Browsers without
+ * backdrop-filter, prefers-reduced-transparency, and forced-colors fall back to
+ * opaque surfaces.
  */
 
 html.liquid-glass {
@@ -151,6 +152,8 @@ html.liquid-glass .shadow-elevation-flyout,
 html.liquid-glass .shadow-elevation-modal,
 html.liquid-glass .shadow-elevation-commandbar,
 html.liquid-glass .shadow-elevation-tooltip {
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  backdrop-filter: blur(var(--lg-blur));
   -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
   backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
 }
@@ -188,22 +191,6 @@ html.liquid-glass aside .sticky {
   }
 }
 
-@media (pointer: coarse) {
-  html.liquid-glass {
-    --lg-blur: 18px;
-    --lg-saturate: 1.35;
-  }
-}
-
-@media (display-mode: standalone), (display-mode: window-controls-overlay) {
-  html.liquid-glass body {
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-right: env(safe-area-inset-right, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    padding-left: env(safe-area-inset-left, 0px);
-  }
-}
-
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   html.liquid-glass:not(.dark) {
     --bg-base: rgb(255 255 255 / 0.94);
@@ -222,7 +209,7 @@ html.liquid-glass aside .sticky {
   }
 }
 
-@media (forced-colors: active), (prefers-contrast: more) {
+@media (forced-colors: active) {
   html.liquid-glass,
   html.liquid-glass body {
     background-color: Canvas;

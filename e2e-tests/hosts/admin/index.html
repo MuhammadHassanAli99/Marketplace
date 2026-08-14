@@ -35,7 +35,7 @@
           var html = document.documentElement;
           html.classList.add(scheme);
           html.style.colorScheme = scheme;
-          if (localStorage.getItem("medusa_admin_liquid_glass") === "true") {
+          if (localStorage.getItem("medusa_admin_liquid_glass") !== "false") {
             html.classList.add("liquid-glass");
           }
         } catch (e) {}

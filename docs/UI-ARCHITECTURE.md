@@ -21,7 +21,7 @@ Both dashboards share identical structure, primitives, and visual rules; they di
 |   TooltipProvider                                                     |
 |     HelmetProvider                                                    |
 |       QueryClientProvider (shared queryClient)                        |
-|         ThemeProvider (light / dark / system + optional Liquid Glass) |
+|         ThemeProvider (light / dark / system + Liquid Glass overlay)  |
 |           I18nProvider (i18next + browser language detector)          |
 |             RouterProvider (react-router-dom)                         |
 |               Toaster (Medusa UI)                                     |
@@ -529,17 +529,7 @@ Use only the [Medusa UI color tokens](https://docs.medusajs.com/ui/colors/overvi
 
 Apply tokens via Tailwind utilities; `clx` (re-exported from `@medusajs/ui`) is the canonical helper for conditional class merging.
 
-Light, dark, and system color schemes are selected from the user menu. **Liquid Glass** is an optional overlay on top of that choice (off by default). It is not a fourth color scheme: it adds a `liquid-glass` class on `<html>`, revalues the existing `--bg-*` / `--elevation-*` tokens toward translucent surfaces, and blurs chrome (`liquid-glass-pane`, cards, flyouts, modals). Users can turn it on from Theme. Page code should keep using Medusa UI tokens; do not special-case Liquid Glass in components.
-
-The overlay is meant to ship on every dashboard host as a **PWA**, so it can be tested and deployed on iOS, Android, Windows, macOS, and Linux without a native wrapper:
-
-- Hosts listen on the LAN (`server.host: true`) so a phone or another machine can open Admin / Vendor during `bun run dev`.
-- `manifest.webmanifest` + `/sw.js` + Apple / Windows meta tags make **Add to Home Screen** (iOS Safari, Android Chrome) and **Install app** (Edge / Chrome on Windows, macOS, Linux) work over HTTPS or `localhost`.
-- Layout uses `dvh` and `viewport-fit=cover` so iOS Safari and standalone Android chrome do not clip the shell. Safe-area padding applies in `display-mode: standalone`.
-- Blur uses `-webkit-backdrop-filter` (Safari) and `backdrop-filter` (Chromium / Firefox). Touch devices use a lighter blur; `prefers-reduced-transparency`, missing `backdrop-filter`, and Windows `forced-colors` fall back to opaque surfaces.
-- Theme persistence wraps `localStorage` so Safari private mode and Android WebView quota errors cannot crash the app.
-
-To verify the overlay on each engine: `cd e2e-tests && bun run e2e:install:platforms && bun run e2e:platforms`.
+Light, dark, and system color schemes are selected from the user menu. **Liquid Glass** is an overlay on top of that choice (on by default on admin and vendor). It is not a fourth color scheme: it adds a `liquid-glass` class on `<html>`, revalues the existing `--bg-*` / `--elevation-*` tokens toward translucent surfaces, and blurs chrome (`liquid-glass-pane`, cards, flyouts, modals). Users can turn it off from Theme. Page code should keep using Medusa UI tokens; do not special-case Liquid Glass in components. The overlay uses `-webkit-backdrop-filter` plus `backdrop-filter` so it paints on Safari, Chrome, Edge, Firefox, and Chromium Android; browsers without blur, `prefers-reduced-transparency`, and `forced-colors` fall back to opaque surfaces.
 
 ### Typography
 

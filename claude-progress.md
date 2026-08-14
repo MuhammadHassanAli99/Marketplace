@@ -14,13 +14,13 @@ session detail aggressively. The per-spec source of truth lives in
   `bun run test:integration:http -- <pattern>`
 - **Current blocker**: none
 
-## Session — Liquid Glass on all platforms, branch `feat/liquid-glass-all-platforms`
+## Session — Liquid Glass on by default, branch `feat/liquid-glass-all-platforms`
 
-Admin + vendor are installable PWAs (iOS Add to Home Screen, Android, Windows,
-macOS, Linux). Shared SW/manifests/icons, LAN `server.host`, dvh/safe-area,
-Safari-private storage guards, forced-colors + no-blur fallbacks. Verified:
-13/13 theme+PWA unit specs; 5/5 `e2e:platforms` (windows/macos/linux/android/ios);
-built `@mercurjs/dashboard-shared|admin|vendor`.
+Liquid Glass overlay is on by default for admin + vendor (light, dark, and
+system). Users can still uncheck it. CSS uses `-webkit-backdrop-filter` +
+`backdrop-filter`, with `@supports` and `forced-colors` fallbacks so the
+material works across Safari/Chrome/Edge/Firefox and Windows contrast mode.
+Verified: 8/8 `apply-document-theme.spec.ts`; rebuilt `@mercurjs/dashboard-shared`.
 
 ## Session — Optional Liquid Glass theme, branch `feat/liquid-glass-theme`
 
