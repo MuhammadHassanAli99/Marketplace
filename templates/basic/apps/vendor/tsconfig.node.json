@@ -10,6 +10,9 @@
     "types": [
       "node"
     ],
+    "typeRoots": [
+      "./types"
+    ],
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
