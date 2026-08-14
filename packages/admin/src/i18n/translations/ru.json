@@ -262,7 +262,8 @@
           "label": "Тема",
           "dark": "Темная",
           "light": "Светлая",
-          "system": "Системная"
+          "system": "Системная",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

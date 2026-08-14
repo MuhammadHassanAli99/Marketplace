@@ -262,7 +262,8 @@
           "label": "تم",
           "dark": "تاریک",
           "light": "روشن",
-          "system": "سیستم"
+          "system": "سیستم",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

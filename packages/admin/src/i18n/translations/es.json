@@ -284,7 +284,8 @@
           "label": "Tema",
           "dark": "Oscuro",
           "light": "Claro",
-          "system": "Sistema"
+          "system": "Sistema",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

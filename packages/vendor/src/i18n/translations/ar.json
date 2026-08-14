@@ -266,7 +266,8 @@
           "label": "السمة",
           "dark": "داكن",
           "light": "فاتح",
-          "system": "النظام"
+          "system": "النظام",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

@@ -1,45 +1,56 @@
 import { PropsWithChildren, useEffect, useState } from "react"
-import { ThemeContext, ThemeOption, ThemeValue } from "./theme-context"
+import {
+  applyDocumentTheme,
+  LIQUID_GLASS_STORAGE_KEY,
+  readLiquidGlassEnabled,
+  readThemePreference,
+  resolveColorScheme,
+  THEME_STORAGE_KEY,
+  type ColorScheme,
+} from "@mercurjs/dashboard-shared"
+import { ThemeContext, ThemeOption } from "./theme-context"
 
-const THEME_KEY = "medusa_admin_theme"
-
-function getDefaultValue(): ThemeOption {
-  const persisted = localStorage?.getItem(THEME_KEY) as ThemeOption
-
-  if (persisted) {
-    return persisted
-  }
-
-  return "system"
-}
-
-function getThemeValue(selected: ThemeOption): ThemeValue {
-  if (selected === "system") {
-    if (window !== undefined) {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
-    }
-
-    // Default to light theme if we can't detect the system preference
-    return "light"
-  }
-
-  return selected
+function prefersDarkScheme(): boolean {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
 }
 
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
-  const [state, setState] = useState<ThemeOption>(getDefaultValue())
-  const [value, setValue] = useState<ThemeValue>(getThemeValue(state))
+  const [state, setState] = useState<ThemeOption>(() =>
+    readThemePreference(localStorage)
+  )
+  const [liquidGlass, setLiquidGlassState] = useState(() =>
+    readLiquidGlassEnabled(localStorage)
+  )
+  const [value, setValue] = useState<ColorScheme>(() =>
+    resolveColorScheme(readThemePreference(localStorage), prefersDarkScheme())
+  )
 
   const setTheme = (theme: ThemeOption) => {
-    localStorage.setItem(THEME_KEY, theme)
-
-    const themeValue = getThemeValue(theme)
-
+    localStorage.setItem(THEME_STORAGE_KEY, theme)
     setState(theme)
-    setValue(themeValue)
+    setValue(resolveColorScheme(theme, prefersDarkScheme()))
   }
+
+  const setLiquidGlass = (enabled: boolean) => {
+    localStorage.setItem(LIQUID_GLASS_STORAGE_KEY, enabled ? "true" : "false")
+    setLiquidGlassState(enabled)
+  }
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)")
+    const onChange = () => {
+      setValue((current) => {
+        if (state !== "system") {
+          return current
+        }
+
+        return resolveColorScheme("system", media.matches)
+      })
+    }
+
+    media.addEventListener("change", onChange)
+    return () => media.removeEventListener("change", onChange)
+  }, [state])
 
   useEffect(() => {
     const html = document.querySelector("html")
@@ -62,10 +73,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
       )
       document.head.appendChild(css)
 
-      html.classList.remove(value === "light" ? "dark" : "light")
-      html.classList.add(value)
-      // Ensures that native elements respect the theme, e.g. the scrollbar.
-      html.style.colorScheme = value
+      applyDocumentTheme(html, value, liquidGlass)
 
       /**
        * Re-enable transitions after the theme has been set,
@@ -74,10 +82,12 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
       void window.getComputedStyle(css).opacity
       document.head.removeChild(css)
     }
-  }, [value])
+  }, [value, liquidGlass])
 
   return (
-    <ThemeContext.Provider value={{ theme: state, setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme: state, setTheme, liquidGlass, setLiquidGlass }}
+    >
       {children}
     </ThemeContext.Provider>
   )

@@ -262,7 +262,8 @@
           "label": "Tema",
           "dark": "Tamsi",
           "light": "Šviesi",
-          "system": "Sistemos"
+          "system": "Sistemos",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

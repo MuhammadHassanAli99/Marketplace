@@ -266,7 +266,8 @@
           "label": "Thema",
           "dark": "Donker",
           "light": "Licht",
-          "system": "Systeem"
+          "system": "Systeem",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

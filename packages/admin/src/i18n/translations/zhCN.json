@@ -262,7 +262,8 @@
           "label": "主题",
           "dark": "深色",
           "light": "浅色",
-          "system": "跟随系统"
+          "system": "跟随系统",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

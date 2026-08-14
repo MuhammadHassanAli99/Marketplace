@@ -266,7 +266,8 @@
           "label": "Tema",
           "dark": "Gelap",
           "light": "Terang",
-          "system": "Sistem"
+          "system": "Sistem",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

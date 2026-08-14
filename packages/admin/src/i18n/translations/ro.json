@@ -262,7 +262,8 @@
           "label": "Temă",
           "dark": "Întuneric",
           "light": "Aprinde",
-          "system": "Sistem"
+          "system": "Sistem",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

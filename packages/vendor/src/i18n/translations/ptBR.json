@@ -266,7 +266,8 @@
           "label": "Tema",
           "dark": "Escuro",
           "light": "Claro",
-          "system": "Sistema"
+          "system": "Sistema",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {

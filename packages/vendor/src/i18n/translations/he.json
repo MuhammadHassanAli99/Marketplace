@@ -266,7 +266,8 @@
           "label": "ערכת נושא",
           "dark": "כהה",
           "light": "בהיר",
-          "system": "מערכת"
+          "system": "מערכת",
+          "liquidGlass": "Liquid Glass"
         }
       },
       "store": {
