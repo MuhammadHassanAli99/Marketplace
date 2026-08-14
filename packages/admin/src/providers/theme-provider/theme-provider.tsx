@@ -1,11 +1,16 @@
 import { PropsWithChildren, useEffect, useState } from "react"
 import {
   applyDocumentTheme,
+  applyThemeColorMeta,
+  getThemeStorage,
   LIQUID_GLASS_STORAGE_KEY,
   readLiquidGlassEnabled,
   readThemePreference,
+  registerDashboardPwa,
   resolveColorScheme,
+  subscribePrefersColorScheme,
   THEME_STORAGE_KEY,
+  writeStorageValue,
   type ColorScheme,
 } from "@mercurjs/dashboard-shared"
 import { ThemeContext, ThemeOption } from "./theme-context"
@@ -15,41 +20,47 @@ function prefersDarkScheme(): boolean {
 }
 
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
+  const storage = getThemeStorage()
   const [state, setState] = useState<ThemeOption>(() =>
-    readThemePreference(localStorage)
+    readThemePreference(storage)
   )
   const [liquidGlass, setLiquidGlassState] = useState(() =>
-    readLiquidGlassEnabled(localStorage)
+    readLiquidGlassEnabled(storage)
   )
   const [value, setValue] = useState<ColorScheme>(() =>
-    resolveColorScheme(readThemePreference(localStorage), prefersDarkScheme())
+    resolveColorScheme(readThemePreference(storage), prefersDarkScheme())
   )
 
   const setTheme = (theme: ThemeOption) => {
-    localStorage.setItem(THEME_STORAGE_KEY, theme)
+    writeStorageValue(getThemeStorage(), THEME_STORAGE_KEY, theme)
     setState(theme)
     setValue(resolveColorScheme(theme, prefersDarkScheme()))
   }
 
   const setLiquidGlass = (enabled: boolean) => {
-    localStorage.setItem(LIQUID_GLASS_STORAGE_KEY, enabled ? "true" : "false")
+    writeStorageValue(
+      getThemeStorage(),
+      LIQUID_GLASS_STORAGE_KEY,
+      enabled ? "true" : "false"
+    )
     setLiquidGlassState(enabled)
   }
 
   useEffect(() => {
+    registerDashboardPwa()
+  }, [])
+
+  useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)")
-    const onChange = () => {
+    return subscribePrefersColorScheme(media, (prefersDark) => {
       setValue((current) => {
         if (state !== "system") {
           return current
         }
 
-        return resolveColorScheme("system", media.matches)
+        return resolveColorScheme("system", prefersDark)
       })
-    }
-
-    media.addEventListener("change", onChange)
-    return () => media.removeEventListener("change", onChange)
+    })
   }, [state])
 
   useEffect(() => {
@@ -74,6 +85,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
       document.head.appendChild(css)
 
       applyDocumentTheme(html, value, liquidGlass)
+      applyThemeColorMeta(document, value, liquidGlass)
 
       /**
        * Re-enable transitions after the theme has been set,

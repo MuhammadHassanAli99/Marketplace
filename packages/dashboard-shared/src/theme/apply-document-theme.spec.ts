@@ -6,6 +6,8 @@ import {
   readLiquidGlassEnabled,
   readThemePreference,
   resolveColorScheme,
+  themeColorFor,
+  writeStorageValue,
   LIQUID_GLASS_STORAGE_KEY,
   THEME_STORAGE_KEY,
 } from "./apply-document-theme"
@@ -56,6 +58,33 @@ describe("theme persistence", () => {
     expect(
       readLiquidGlassEnabled(memoryStorage({ [LIQUID_GLASS_STORAGE_KEY]: "true" }))
     ).toBe(true)
+  })
+
+  test("storage reads and writes survive thrown access (Safari private mode)", () => {
+    const exploding = {
+      getItem: () => {
+        throw new Error("private")
+      },
+      setItem: () => {
+        throw new Error("private")
+      },
+    }
+
+    expect(readThemePreference(exploding)).toBe("system")
+    expect(readLiquidGlassEnabled(exploding)).toBe(false)
+    expect(() => writeStorageValue(exploding, THEME_STORAGE_KEY, "dark")).not.toThrow()
+  })
+})
+
+describe("themeColorFor", () => {
+  test("matches Liquid Glass canvas colors when the overlay is on", () => {
+    expect(themeColorFor("light", true)).toBe("#dce6f4")
+    expect(themeColorFor("dark", true)).toBe("#0e1118")
+  })
+
+  test("uses opaque dashboard chrome when the overlay is off", () => {
+    expect(themeColorFor("light", false)).toBe("#fafafa")
+    expect(themeColorFor("dark", false)).toBe("#18181b")
   })
 })
 

@@ -7,12 +7,20 @@ session detail aggressively. The per-spec source of truth lives in
 ## Current Verified State
 
 - **Repository root**: `/Users/macbookpro/marketplace/Marketplace`
-- **Current branch**: `feat/liquid-glass-theme`
+- **Current branch**: `feat/liquid-glass-all-platforms`
 - **Current version**: `2.2.0-rc.1`
 - **Standard startup path**: `bun install && bun run dev`
 - **Standard verification path**: `bun run build`, `bun run lint` (oxlint),
   `bun run test:integration:http -- <pattern>`
 - **Current blocker**: none
+
+## Session — Liquid Glass on all platforms, branch `feat/liquid-glass-all-platforms`
+
+Admin + vendor are installable PWAs (iOS Add to Home Screen, Android, Windows,
+macOS, Linux). Shared SW/manifests/icons, LAN `server.host`, dvh/safe-area,
+Safari-private storage guards, forced-colors + no-blur fallbacks. Verified:
+13/13 theme+PWA unit specs; 5/5 `e2e:platforms` (windows/macos/linux/android/ios);
+built `@mercurjs/dashboard-shared|admin|vendor`.
 
 ## Session — Optional Liquid Glass theme, branch `feat/liquid-glass-theme`
 

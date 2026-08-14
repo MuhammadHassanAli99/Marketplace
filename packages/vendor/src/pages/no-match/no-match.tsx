@@ -11,7 +11,7 @@ export const NoMatch = () => {
   const message = t("errorBoundary.noMatchMessage")
 
   return (
-    <div className="flex size-full min-h-screen items-center justify-center">
+    <div className="flex size-full min-h-dvh items-center justify-center">
       <div className="flex flex-col items-center gap-y-6">
         <div className="text-ui-fg-subtle flex flex-col items-center gap-y-3">
           <ExclamationCircle />

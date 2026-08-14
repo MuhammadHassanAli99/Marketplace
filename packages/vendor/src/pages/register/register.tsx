@@ -174,7 +174,7 @@ const Root = ({ children }: { children?: ReactNode }) => {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-dvh items-center justify-center">
         <Spinner className="text-ui-fg-interactive animate-spin" />
       </div>
     )

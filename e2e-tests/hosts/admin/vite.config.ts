@@ -10,6 +10,12 @@ export default defineConfig(({ mode }) => {
   const vendorUrl = env.VITE_MERCUR_VENDOR_URL || env.MERCUR_VENDOR_URL
 
   return {
+    server: {
+      host: true,
+    },
+    preview: {
+      host: true,
+    },
     plugins: [
       react(),
       mercurDashboardPlugin({
