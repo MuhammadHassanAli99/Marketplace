@@ -49,15 +49,15 @@ describe("theme persistence", () => {
     expect(isThemePreference("liquid-glass")).toBe(false)
   })
 
-  test("liquid glass is on unless explicitly stored as false", () => {
-    expect(readLiquidGlassEnabled(null)).toBe(true)
-    expect(readLiquidGlassEnabled(memoryStorage())).toBe(true)
-    expect(
-      readLiquidGlassEnabled(memoryStorage({ [LIQUID_GLASS_STORAGE_KEY]: "true" }))
-    ).toBe(true)
+  test("liquid glass is off unless explicitly stored as true", () => {
+    expect(readLiquidGlassEnabled(null)).toBe(false)
+    expect(readLiquidGlassEnabled(memoryStorage())).toBe(false)
     expect(
       readLiquidGlassEnabled(memoryStorage({ [LIQUID_GLASS_STORAGE_KEY]: "false" }))
     ).toBe(false)
+    expect(
+      readLiquidGlassEnabled(memoryStorage({ [LIQUID_GLASS_STORAGE_KEY]: "true" }))
+    ).toBe(true)
   })
 
   test("storage reads and writes survive thrown access (Safari private mode)", () => {
@@ -71,7 +71,7 @@ describe("theme persistence", () => {
     }
 
     expect(readThemePreference(exploding)).toBe("system")
-    expect(readLiquidGlassEnabled(exploding)).toBe(true)
+    expect(readLiquidGlassEnabled(exploding)).toBe(false)
     expect(() => writeStorageValue(exploding, THEME_STORAGE_KEY, "dark")).not.toThrow()
   })
 })

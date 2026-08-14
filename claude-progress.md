@@ -21,13 +21,12 @@ Capacitor 8 iOS+Android projects for admin (`com.mercurjs.admin`) and vendor
 Native CORS origins on the API; SW skipped inside Capacitor. Tests: 18/18
 theme+PWA+native-runtime. `bunx cap add ios|android` generated both hosts.
 
-## Session — Liquid Glass on by default, branch `feat/liquid-glass-all-platforms`
+## Session — Liquid Glass opt-in (off by default)
 
-Liquid Glass overlay is on by default for admin + vendor (light, dark, and
-system). Users can still uncheck it. CSS uses `-webkit-backdrop-filter` +
-`backdrop-filter`, with `@supports` and `forced-colors` fallbacks so the
-material works across Safari/Chrome/Edge/Firefox and Windows contrast mode.
-Verified: 8/8 `apply-document-theme.spec.ts`; rebuilt `@mercurjs/dashboard-shared`.
+Liquid Glass overlay is off by default. Users can enable it from Theme →
+Liquid Glass. `readLiquidGlassEnabled` and host FOUC scripts only add the
+class when `medusa_admin_liquid_glass === "true"`. Verified:
+`apply-document-theme.spec.ts`.
 
 ## Session — Optional Liquid Glass theme, branch `feat/liquid-glass-theme`
 

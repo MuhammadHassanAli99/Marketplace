@@ -1,7 +1,8 @@
 /*
- * Liquid Glass material. Enabled by default on dashboard hosts (admin + vendor)
- * by adding `liquid-glass` to <html> alongside `light` or `dark`. Surfaces stay
- * on Medusa UI tokens; only the token values and chrome blur change.
+ * Optional Liquid Glass material. Hosts opt in by adding `liquid-glass` to <html>
+ * alongside `light` or `dark`. Surfaces stay on Medusa UI tokens; only the
+ * token values and chrome blur change. Off by default until the user enables it
+ * from Theme.
  *
  * Blur uses -webkit-backdrop-filter + backdrop-filter so Safari, Chrome, Edge,
  * Firefox, and Chromium Android all paint the same material. Browsers without

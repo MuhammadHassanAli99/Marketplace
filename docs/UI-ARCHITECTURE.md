@@ -21,7 +21,7 @@ Both dashboards share identical structure, primitives, and visual rules; they di
 |   TooltipProvider                                                     |
 |     HelmetProvider                                                    |
 |       QueryClientProvider (shared queryClient)                        |
-|         ThemeProvider (light / dark / system + Liquid Glass overlay)  |
+|         ThemeProvider (light / dark / system + optional Liquid Glass) |
 |           I18nProvider (i18next + browser language detector)          |
 |             RouterProvider (react-router-dom)                         |
 |               Toaster (Medusa UI)                                     |
@@ -529,7 +529,7 @@ Use only the [Medusa UI color tokens](https://docs.medusajs.com/ui/colors/overvi
 
 Apply tokens via Tailwind utilities; `clx` (re-exported from `@medusajs/ui`) is the canonical helper for conditional class merging.
 
-Light, dark, and system color schemes are selected from the user menu. **Liquid Glass** is an overlay on top of that choice (on by default on admin and vendor). It is not a fourth color scheme: it adds a `liquid-glass` class on `<html>`, revalues the existing `--bg-*` / `--elevation-*` tokens toward translucent surfaces, and blurs chrome (`liquid-glass-pane`, cards, flyouts, modals). Users can turn it off from Theme. Page code should keep using Medusa UI tokens; do not special-case Liquid Glass in components. The overlay uses `-webkit-backdrop-filter` plus `backdrop-filter` so it paints on Safari, Chrome, Edge, Firefox, and Chromium Android; browsers without blur, `prefers-reduced-transparency`, and `forced-colors` fall back to opaque surfaces.
+Light, dark, and system color schemes are selected from the user menu. **Liquid Glass** is an optional overlay on top of that choice (off by default). It is not a fourth color scheme: it adds a `liquid-glass` class on `<html>`, revalues the existing `--bg-*` / `--elevation-*` tokens toward translucent surfaces, and blurs chrome (`liquid-glass-pane`, cards, flyouts, modals). Users can turn it on from Theme. Page code should keep using Medusa UI tokens; do not special-case Liquid Glass in components. The overlay uses `-webkit-backdrop-filter` plus `backdrop-filter` so it paints on Safari, Chrome, Edge, Firefox, and Chromium Android; browsers without blur, `prefers-reduced-transparency`, and `forced-colors` fall back to opaque surfaces.
 
 Admin and vendor ship as store-ready apps as well as PWAs:
 

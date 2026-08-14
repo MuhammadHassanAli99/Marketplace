@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { mercurDashboardPlugin } from '@mercurjs/dashboard-sdk/vite'
-import { isDashboardNativeBuild } from '@mercurjs/dashboard-shared'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -10,11 +9,9 @@ export default defineConfig(({ mode }) => {
     env.VITE_MERCUR_BACKEND_URL || env.MERCUR_BACKEND_URL
   const vendorUrl =
     env.VITE_MERCUR_VENDOR_URL || env.MERCUR_VENDOR_URL
-  const native = isDashboardNativeBuild({
-    ...env,
-    CAPACITOR: process.env.CAPACITOR,
-    VITE_NATIVE: process.env.VITE_NATIVE ?? env.VITE_NATIVE,
-  })
+  const native =
+    process.env.CAPACITOR === '1' ||
+    (process.env.VITE_NATIVE ?? env.VITE_NATIVE) === '1'
 
   return {
     base: native ? './' : '/',
