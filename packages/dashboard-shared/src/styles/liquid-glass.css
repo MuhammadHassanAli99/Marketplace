@@ -1,7 +1,12 @@
 /*
- * Optional Liquid Glass material. Hosts opt in by adding `liquid-glass` to <html>
- * alongside `light` or `dark`. Surfaces stay on Medusa UI tokens; only the
- * token values and chrome blur change.
+ * Liquid Glass material. Enabled by default on dashboard hosts (admin + vendor)
+ * by adding `liquid-glass` to <html> alongside `light` or `dark`. Surfaces stay
+ * on Medusa UI tokens; only the token values and chrome blur change.
+ *
+ * Blur uses -webkit-backdrop-filter + backdrop-filter so Safari, Chrome, Edge,
+ * Firefox, and Chromium Android all paint the same material. Browsers without
+ * backdrop-filter, prefers-reduced-transparency, and forced-colors fall back to
+ * opaque surfaces.
  */
 
 html.liquid-glass {
@@ -135,6 +140,8 @@ html.liquid-glass .shadow-elevation-flyout,
 html.liquid-glass .shadow-elevation-modal,
 html.liquid-glass .shadow-elevation-commandbar,
 html.liquid-glass .shadow-elevation-tooltip {
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  backdrop-filter: blur(var(--lg-blur));
   -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
   backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
 }
@@ -158,6 +165,46 @@ html.liquid-glass aside .sticky {
     --bg-component: rgb(39 39 42 / 0.92);
     --bg-field: rgb(255 255 255 / 0.08);
     --bg-overlay: rgb(24 24 27 / 0.72);
+  }
+
+  html.liquid-glass .liquid-glass-pane,
+  html.liquid-glass .shadow-elevation-card-rest,
+  html.liquid-glass .shadow-elevation-card-hover,
+  html.liquid-glass .shadow-elevation-flyout,
+  html.liquid-glass .shadow-elevation-modal,
+  html.liquid-glass .shadow-elevation-commandbar,
+  html.liquid-glass .shadow-elevation-tooltip {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html.liquid-glass:not(.dark) {
+    --bg-base: rgb(255 255 255 / 0.94);
+    --bg-subtle: rgb(250 250 250 / 0.94);
+    --bg-component: rgb(250 250 250 / 0.94);
+    --bg-field: rgb(250 250 250 / 0.96);
+    --bg-overlay: rgb(24 24 27 / 0.4);
+  }
+
+  html.liquid-glass.dark {
+    --bg-base: rgb(33 33 36 / 0.94);
+    --bg-subtle: rgb(24 24 27 / 0.94);
+    --bg-component: rgb(39 39 42 / 0.94);
+    --bg-field: rgb(255 255 255 / 0.1);
+    --bg-overlay: rgb(24 24 27 / 0.72);
+  }
+}
+
+@media (forced-colors: active) {
+  html.liquid-glass,
+  html.liquid-glass body {
+    background-color: Canvas;
+  }
+
+  html.liquid-glass body::before {
+    content: none;
   }
 
   html.liquid-glass .liquid-glass-pane,
