@@ -39,7 +39,7 @@ jobs:
       # Ensures Pages is using the GitHub Actions source before deploy-pages
       # talks to the Pages API (a missing/disabled site returns 404).
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       # Publish only the schema files. Do not ship a CNAME — this copy of the
       # repo is served at username.github.io/Marketplace, not registry.mercurjs.com.
